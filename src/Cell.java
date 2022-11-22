@@ -2,7 +2,7 @@ public class Cell {
     private final int x;
     private final int y;
     private ChipType Chip;
-    private final boolean isEmpty;
+    private boolean isEmpty;
 
     public Cell(int x, int y) {
         this.x = x;
@@ -28,6 +28,7 @@ public class Cell {
 
     public void setChip(ChipType chip) {
         Chip = chip;
+        isEmpty = false;
     }
 
     public void swapChip() {
