@@ -1,3 +1,5 @@
+package core;
+
 public class Field {
     private final Cell[][] field;
     private final int size;

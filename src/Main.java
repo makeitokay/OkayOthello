@@ -1,3 +1,4 @@
+import core.Game;
 import io.MainMenuIoHelper;
 
 public class Main {

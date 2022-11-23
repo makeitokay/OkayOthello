@@ -1,3 +1,5 @@
+package core;
+
 public class Game {
     private final Field field;
     private final GameMode mode;
