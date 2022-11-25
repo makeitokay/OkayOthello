@@ -6,12 +6,9 @@ import java.util.List;
 
 public class Game {
     private final ChipType[][] field;
-    private final GameMode mode;
-
     private ChipType currentPlayer;
 
-    public Game(GameMode mode) {
-        this.mode = mode;
+    public Game() {
         var size = Constants.FIELD_SIZE;
         field = new ChipType[size][size];
         for (int i = 0; i < size; ++i) {
@@ -54,10 +51,6 @@ public class Game {
 
     private boolean canPlayerMove(ChipType player) {
         return getAvailableMoves(player).size() > 0;
-    }
-
-    public GameMode getMode() {
-        return mode;
     }
 
     public boolean isCompleted() {

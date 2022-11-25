@@ -1,39 +1,33 @@
 import core.Game;
-import core.GameMode;
-import io.GameIoHelper;
-import providers.EasyGameMoveProvider;
-import providers.HardGameMoveProvider;
-import providers.MultiplayerGameMoveProvider;
+import gameMode.EasyGameMode;
+import gameMode.GameMode;
+import gameMode.HardGameMode;
+import gameMode.MultiplayerGameMode;
 
 public class GameRunner {
     public static void RunEasyGame() {
-        Run(new Game(GameMode.Easy));
+        Run(new Game(), new EasyGameMode());
     }
 
     public static void RunHardGame() {
-        Run(new Game(GameMode.Hard));
+        Run(new Game(), new HardGameMode());
     }
 
     public static void RunMultiplayerGame() {
-        Run(new Game(GameMode.Multiplayer));
+        Run(new Game(), new MultiplayerGameMode());
     }
 
-    private static void Run(Game game) {
-        // todo: we dont need mode in game class
-        var moveProvider = switch (game.getMode()) {
-            case Easy -> new EasyGameMoveProvider();
-            case Hard -> new HardGameMoveProvider();
-            case Multiplayer -> new MultiplayerGameMoveProvider();
-        };
+    private static void Run(Game game, GameMode mode) {
+        var blackPlayer = mode.getBlackPlayer();
+        var whitePlayer = mode.getWhitePlayer();
+
         while (!game.isCompleted()) {
             if (game.canBlackPlayerMove()) {
-                var blackPlayerMove = moveProvider.provideBlackPlayerMove(game.getField(), game.getAvailableMoves());
+                var blackPlayerMove = blackPlayer.chooseMove(game.getField(), game.getAvailableMoves());
                 game.move(blackPlayerMove);
             }
             if (game.canWhitePlayerMove()) {
-                var moves = game.getAvailableMoves();
-                GameIoHelper.printFieldWithAvailableMoves(game.getField(), moves);
-                var whitePlayerMove = moveProvider.provideWhitePlayerMove(game.getField(), moves);
+                var whitePlayerMove = whitePlayer.chooseMove(game.getField(), game.getAvailableMoves());
                 game.move(whitePlayerMove);
             }
         }
