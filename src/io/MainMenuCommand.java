@@ -5,5 +5,6 @@ public enum MainMenuCommand {
     PlayHardMode,
     PlayMultiplayer,
     PrintBestResult,
+    Help,
     Quit
 }
