@@ -1,4 +1,4 @@
-package core;
+package OkayOthello.core;
 
 public record Point(int x, int y) {
     @Override

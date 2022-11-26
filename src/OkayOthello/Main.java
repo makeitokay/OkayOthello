@@ -1,4 +1,6 @@
-import io.MainMenuIoHelper;
+package OkayOthello;
+
+import OkayOthello.io.MainMenuIoHelper;
 
 public class Main {
     public static void main(String[] args) {

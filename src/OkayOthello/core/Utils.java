@@ -1,4 +1,4 @@
-package core;
+package OkayOthello.core;
 
 class Utils {
     public static ChipType swapChip(ChipType chip) {

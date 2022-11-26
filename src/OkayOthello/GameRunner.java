@@ -1,8 +1,10 @@
-import core.Game;
-import gameMode.EasyGameMode;
-import gameMode.GameMode;
-import gameMode.HardGameMode;
-import gameMode.MultiplayerGameMode;
+package OkayOthello;
+
+import OkayOthello.core.Game;
+import OkayOthello.gameMode.EasyGameMode;
+import OkayOthello.gameMode.GameMode;
+import OkayOthello.gameMode.HardGameMode;
+import OkayOthello.gameMode.MultiplayerGameMode;
 
 public class GameRunner {
     public static void RunEasyGame() {

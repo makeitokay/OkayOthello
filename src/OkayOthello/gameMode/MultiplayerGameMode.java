@@ -1,17 +1,16 @@
-package gameMode;
+package OkayOthello.gameMode;
 
-import players.EasyComputerPlayer;
-import players.HardComputerPlayer;
-import players.HumanPlayer;
-import players.Player;
+import OkayOthello.players.HardComputerPlayer;
+import OkayOthello.players.HumanPlayer;
+import OkayOthello.players.Player;
 
-public class HardGameMode implements GameMode {
+public class MultiplayerGameMode implements GameMode {
     private final Player blackPlayer;
     private final Player whitePlayer;
 
-    public HardGameMode() {
+    public MultiplayerGameMode() {
         blackPlayer = new HumanPlayer();
-        whitePlayer = new HardComputerPlayer();
+        whitePlayer = new HumanPlayer();
     }
 
     @Override

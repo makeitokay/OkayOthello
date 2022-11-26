@@ -1,8 +1,8 @@
-package io;
+package OkayOthello.io;
 
-import core.Constants;
-import core.Field;
-import core.Point;
+import OkayOthello.core.Constants;
+import OkayOthello.core.Field;
+import OkayOthello.core.Point;
 
 import java.util.List;
 

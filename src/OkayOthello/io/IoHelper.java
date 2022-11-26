@@ -1,4 +1,4 @@
-package io;
+package OkayOthello.io;
 
 import java.util.Scanner;
 

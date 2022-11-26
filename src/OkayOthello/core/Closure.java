@@ -1,4 +1,4 @@
-package core;
+package OkayOthello.core;
 
 public class Closure {
     private final Point startPoint;

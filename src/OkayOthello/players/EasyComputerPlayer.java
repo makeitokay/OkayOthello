@@ -1,8 +1,8 @@
-package players;
+package OkayOthello.players;
 
-import core.Field;
-import core.Point;
-import io.GameIoHelper;
+import OkayOthello.core.Field;
+import OkayOthello.core.Point;
+import OkayOthello.io.GameIoHelper;
 
 import java.util.List;
 

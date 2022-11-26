@@ -1,4 +1,4 @@
-package io;
+package OkayOthello.io;
 
 public enum MainMenuCommand {
     PlayEasyMode,

@@ -1,4 +1,4 @@
-package core;
+package OkayOthello.core;
 
 import java.util.ArrayList;
 import java.util.Arrays;

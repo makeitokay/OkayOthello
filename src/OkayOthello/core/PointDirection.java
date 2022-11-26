@@ -1,4 +1,4 @@
-package core;
+package OkayOthello.core;
 
 public class PointDirection {
     public static final PointDirection NORTH = new PointDirection(-1, 0);

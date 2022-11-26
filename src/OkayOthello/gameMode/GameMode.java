@@ -1,6 +1,6 @@
-package gameMode;
+package OkayOthello.gameMode;
 
-import players.Player;
+import OkayOthello.players.Player;
 
 public interface GameMode {
     Player getBlackPlayer();
