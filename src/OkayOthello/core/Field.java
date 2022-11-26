@@ -58,9 +58,9 @@ public class Field {
     }
 
     public void closeClosure(Closure closure) {
-        var size = closure.getSize();
-        var direction = closure.getDirection();
-        var startPoint = closure.getStartPoint();
+        var size = closure.size();
+        var direction = closure.direction();
+        var startPoint = closure.startPoint();
         var startPointX = startPoint.x();
         var startPointY = startPoint.y();
 

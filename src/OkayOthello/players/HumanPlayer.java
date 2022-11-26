@@ -1,6 +1,5 @@
 package OkayOthello.players;
 
-import OkayOthello.core.ChipType;
 import OkayOthello.core.Field;
 import OkayOthello.core.Point;
 import OkayOthello.io.GameIoHelper;

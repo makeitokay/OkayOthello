@@ -1,6 +1,5 @@
 package OkayOthello.gameMode;
 
-import OkayOthello.players.EasyComputerPlayer;
 import OkayOthello.players.HardComputerPlayer;
 import OkayOthello.players.HumanPlayer;
 import OkayOthello.players.Player;

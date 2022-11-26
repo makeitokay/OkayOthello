@@ -1,10 +1,6 @@
 package OkayOthello.io;
 
-import java.util.Scanner;
-
 public class MainMenuIoHelper {
-    private final static Scanner scanner = new Scanner(System.in);
-
     public static void printMainMenu() {
         System.out.println(
                 """
