@@ -1,10 +1,10 @@
 package players;
 
-import core.ChipType;
+import core.Field;
 import core.Point;
 
 import java.util.List;
 
 public interface Player {
-    Point chooseMove(ChipType[][] field, List<Point> availableMoves);
+    Point chooseMove(Field field, List<Point> availableMoves);
 }

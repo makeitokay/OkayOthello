@@ -1,13 +1,15 @@
 package players;
 
-import core.ChipType;
+import core.Field;
 import core.Point;
+import io.GameIoHelper;
 
 import java.util.List;
 
 public class EasyComputerPlayer implements Player {
     @Override
-    public Point chooseMove(ChipType[][] field, List<Point> availableMoves) {
+    public Point chooseMove(Field field, List<Point> availableMoves) {
+        GameIoHelper.printFieldWithAvailableMoves(field, availableMoves);
         return availableMoves.get(0);
     }
 }

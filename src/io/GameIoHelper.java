@@ -1,20 +1,20 @@
 package io;
 
-import core.ChipType;
 import core.Constants;
+import core.Field;
 import core.Point;
 
 import java.util.List;
 
 public class GameIoHelper {
-    public static Point getMoveFromPlayer(ChipType[][] field, List<Point> availableMoves) {
+    public static Point getMoveFromPlayer(Field field, List<Point> availableMoves) {
         printFieldWithAvailableMoves(field, availableMoves);
         System.out.println("Выберите номер ячейки, в которую хотите сходить");
         var pointIndex = IoHelper.GetNumberFromInput(1, availableMoves.size()) - 1;
         return availableMoves.get(pointIndex);
     }
 
-    public static void printFieldWithAvailableMoves(ChipType[][] field, List<Point> availableMoves) {
+    public static void printFieldWithAvailableMoves(Field field, List<Point> availableMoves) {
         for (int i = 0; i < Constants.FIELD_SIZE; ++i) {
             for (int j = 0; j < Constants.FIELD_SIZE; ++j) {
                 System.out.print("|");
@@ -26,7 +26,8 @@ public class GameIoHelper {
                     continue;
                 }
 
-                var cell = field[i][j];
+                var point = new Point(i, j);
+                var cell = field.getChipAt(point);
                 if (cell == null) {
                     System.out.print("\t-\t");
                     continue;
@@ -38,5 +39,6 @@ public class GameIoHelper {
             }
             System.out.println();
         }
+        System.out.println();
     }
 }

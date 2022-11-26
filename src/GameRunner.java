@@ -23,11 +23,11 @@ public class GameRunner {
 
         while (!game.isCompleted()) {
             if (game.canBlackPlayerMove()) {
-                var blackPlayerMove = blackPlayer.chooseMove(game.getField(), game.getAvailableMoves());
+                var blackPlayerMove = blackPlayer.chooseMove(game.getFieldCopy(), game.getAvailableMoves());
                 game.move(blackPlayerMove);
             }
             if (game.canWhitePlayerMove()) {
-                var whitePlayerMove = whitePlayer.chooseMove(game.getField(), game.getAvailableMoves());
+                var whitePlayerMove = whitePlayer.chooseMove(game.getFieldCopy(), game.getAvailableMoves());
                 game.move(whitePlayerMove);
             }
         }
