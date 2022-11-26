@@ -28,15 +28,20 @@ public class GameRunner {
             if (game.canBlackPlayerMove()) {
                 System.out.println("Ходят ЧЁРНЫЕ");
                 var blackPlayerMove = blackPlayer.chooseMove(game.getFieldCopy(), game.getAvailableMoves(), ChipType.Black);
-                System.out.printf("ЧЁРНЫЕ выбрали точку %s%n", blackPlayerMove);
+                System.out.printf("ЧЁРНЫЕ выбрали точку %s%n%n", blackPlayerMove);
                 game.move(blackPlayerMove);
             }
             if (game.canWhitePlayerMove()) {
                 System.out.println("Ходят БЕЛЫЕ");
                 var whitePlayerMove = whitePlayer.chooseMove(game.getFieldCopy(), game.getAvailableMoves(), ChipType.White);
-                System.out.printf("БЕЛЫЕ выбрали точку %s%n", whitePlayerMove);
+                System.out.printf("БЕЛЫЕ выбрали точку %s%n%n", whitePlayerMove);
                 game.move(whitePlayerMove);
             }
         }
+        var result = game.getGameResult();
+        var winner = result.blackPlayerScore() > result.whitePlayerScore() ? "ЧЕРНЫЕ" : "БЕЛЫЕ";
+        System.out.printf("ИГРА ЗАВЕРШЕНА!%nРЕЗУЛЬТАТЫ:%nБЕЛЫЕ набрали %s очков%nЧЕРНЫЕ набрали %s очков%nПОБЕДИЛИ %s%n%n",
+                result.whitePlayerScore(), result.blackPlayerScore(), winner);
+
     }
 }

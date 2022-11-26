@@ -45,24 +45,27 @@ public class Game {
     }
 
     public boolean isCompleted() {
-        int emptyCells = 0;
-        int whiteCells = 0;
-        int blackCells = 0;
+        int emptyCells = countChips(null);
+        int whiteCells = countChips(ChipType.White);
+        int blackCells = countChips(ChipType.Black);
+        return (emptyCells == 0) || (whiteCells == 0) || (blackCells == 0)
+                || (!canBlackPlayerMove() && !canWhitePlayerMove());
+    }
+
+    private int countChips(ChipType chip) {
+        int chips = 0;
         for (int i = 0; i < field.getSize(); ++i) {
             for (int j = 0; j < field.getSize(); ++j) {
-                var cell = field.getChipAt(new Point(i, j));
-                if (cell == null) {
-                    ++emptyCells;
-                    continue;
-                }
-                switch (cell) {
-                    case Black -> ++blackCells;
-                    case White -> ++whiteCells;
+                if (chip == field.getChipAt(new Point(i, j))) {
+                    ++chips;
                 }
             }
         }
-        return (emptyCells == 0) || (whiteCells == 0) || (blackCells == 0)
-                || (!canBlackPlayerMove() && !canWhitePlayerMove());
+        return chips;
+    }
+
+    public GameResult getGameResult() {
+        return new GameResult(countChips(ChipType.White), countChips(ChipType.Black));
     }
 
     public List<Point> getAvailableMoves() {
