@@ -1,12 +1,14 @@
 package OkayOthello.io;
 
-import OkayOthello.core.Constants;
 import OkayOthello.core.Field;
 import OkayOthello.core.Point;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GameIoHelper {
+    private static final List<String> COLUMNS = List.of("A", "B", "C", "D", "E", "F", "G", "H");
+
     public static Point getMoveFromPlayer(Field field, List<Point> availableMoves) {
         printFieldWithAvailableMoves(field, availableMoves);
         System.out.println("Выберите номер ячейки, в которую хотите сходить");
@@ -16,6 +18,7 @@ public class GameIoHelper {
 
     public static void printFieldWithAvailableMoves(Field field, List<Point> availableMoves) {
         for (int i = 0; i < field.getSize(); ++i) {
+            System.out.printf("%s\t", i + 1);
             for (int j = 0; j < field.getSize(); ++j) {
                 System.out.print("|");
 
@@ -37,8 +40,8 @@ public class GameIoHelper {
                     case White -> System.out.print("\t○\t");
                 }
             }
-            System.out.println();
+            System.out.println("|");
         }
-        System.out.println();
+        System.out.println(" \t \t" + String.join("\t \t", COLUMNS));
     }
 }

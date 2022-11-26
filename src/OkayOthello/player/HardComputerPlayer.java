@@ -11,8 +11,6 @@ import java.util.List;
 public class HardComputerPlayer implements Player {
     @Override
     public Point chooseMove(Field field, List<Point> availableMoves, ChipType playerChip) {
-        GameIoHelper.printFieldWithAvailableMoves(field, availableMoves);
-
         var maxMoveWeight = -129.0;
         var maxMoveWeightIndex = -1;
         for (int i = 0; i < availableMoves.size(); ++i) {
