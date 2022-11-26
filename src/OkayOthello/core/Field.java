@@ -20,6 +20,10 @@ public class Field {
         this.field = field;
     }
 
+    public int getSize() {
+        return field.length;
+    }
+
     public ChipType getChipAt(Point point) {
         return field[point.x()][point.y()];
     }
@@ -39,7 +43,7 @@ public class Field {
             int opponentChipsCount = 0;
             int totalChipsCount = 0;
             var opponent = Utils.swapChip(chip);
-            while (x > 0 && x < Constants.FIELD_SIZE && y > 0 && y < Constants.FIELD_SIZE) {
+            while (x > 0 && x < getSize() && y > 0 && y < getSize()) {
                 if (field[x][y] == chip) {
                     if (totalChipsCount == opponentChipsCount && totalChipsCount != 0) {
                         closures.add(new Closure(point, direction, totalChipsCount));

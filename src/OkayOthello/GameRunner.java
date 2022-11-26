@@ -1,5 +1,6 @@
 package OkayOthello;
 
+import OkayOthello.core.ChipType;
 import OkayOthello.core.Game;
 import OkayOthello.gameMode.EasyGameMode;
 import OkayOthello.gameMode.GameMode;
@@ -25,11 +26,11 @@ public class GameRunner {
 
         while (!game.isCompleted()) {
             if (game.canBlackPlayerMove()) {
-                var blackPlayerMove = blackPlayer.chooseMove(game.getFieldCopy(), game.getAvailableMoves());
+                var blackPlayerMove = blackPlayer.chooseMove(game.getFieldCopy(), game.getAvailableMoves(), ChipType.Black);
                 game.move(blackPlayerMove);
             }
             if (game.canWhitePlayerMove()) {
-                var whitePlayerMove = whitePlayer.chooseMove(game.getFieldCopy(), game.getAvailableMoves());
+                var whitePlayerMove = whitePlayer.chooseMove(game.getFieldCopy(), game.getAvailableMoves(), ChipType.White);
                 game.move(whitePlayerMove);
             }
         }

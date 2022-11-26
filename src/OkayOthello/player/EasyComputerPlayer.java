@@ -1,5 +1,6 @@
 package OkayOthello.player;
 
+import OkayOthello.core.ChipType;
 import OkayOthello.core.Field;
 import OkayOthello.core.Point;
 import OkayOthello.io.GameIoHelper;
@@ -8,8 +9,20 @@ import java.util.List;
 
 public class EasyComputerPlayer implements Player {
     @Override
-    public Point chooseMove(Field field, List<Point> availableMoves) {
+    public Point chooseMove(Field field, List<Point> availableMoves, ChipType playerChip) {
         GameIoHelper.printFieldWithAvailableMoves(field, availableMoves);
-        return availableMoves.get(0);
+
+        var maxMoveWeight = -128.8;
+        var maxMoveWeightIndex = -1;
+        for (int i = 0; i < availableMoves.size(); ++i) {
+            var move = availableMoves.get(i);
+            var moveWeight = MoveCalculator.getMoveWeight(field, move, playerChip);
+            if (moveWeight > maxMoveWeight) {
+                maxMoveWeight = moveWeight;
+                maxMoveWeightIndex = i;
+            }
+        }
+
+        return availableMoves.get(maxMoveWeightIndex);
     }
 }

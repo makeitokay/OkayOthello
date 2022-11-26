@@ -48,8 +48,8 @@ public class Game {
         int emptyCells = 0;
         int whiteCells = 0;
         int blackCells = 0;
-        for (int i = 0; i < Constants.FIELD_SIZE; ++i) {
-            for (int j = 0; j < Constants.FIELD_SIZE; ++j) {
+        for (int i = 0; i < field.getSize(); ++i) {
+            for (int j = 0; j < field.getSize(); ++j) {
                 var cell = field.getChipAt(new Point(i, j));
                 if (cell == null) {
                     ++emptyCells;
@@ -71,8 +71,8 @@ public class Game {
 
     private List<Point> getAvailableMoves(ChipType chip) {
         var moves = new ArrayList<Point>();
-        for (int i = 0; i < Constants.FIELD_SIZE; ++i) {
-            for (int j = 0; j < Constants.FIELD_SIZE; ++j) {
+        for (int i = 0; i < field.getSize(); ++i) {
+            for (int j = 0; j < field.getSize(); ++j) {
                 var point = new Point(i, j);
                 var cell = field.getChipAt(point);
                 if (cell != null) {

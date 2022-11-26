@@ -15,8 +15,8 @@ public class GameIoHelper {
     }
 
     public static void printFieldWithAvailableMoves(Field field, List<Point> availableMoves) {
-        for (int i = 0; i < Constants.FIELD_SIZE; ++i) {
-            for (int j = 0; j < Constants.FIELD_SIZE; ++j) {
+        for (int i = 0; i < field.getSize(); ++i) {
+            for (int j = 0; j < field.getSize(); ++j) {
                 System.out.print("|");
 
                 int x = i, y = j;
