@@ -1,8 +1,8 @@
 package OkayOthello.gameMode;
 
-import OkayOthello.players.EasyComputerPlayer;
-import OkayOthello.players.HumanPlayer;
-import OkayOthello.players.Player;
+import OkayOthello.player.EasyComputerPlayer;
+import OkayOthello.player.HumanPlayer;
+import OkayOthello.player.Player;
 
 public class EasyGameMode implements GameMode {
     private final Player blackPlayer;

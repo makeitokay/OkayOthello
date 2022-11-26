@@ -1,4 +1,4 @@
-package OkayOthello.players;
+package OkayOthello.player;
 
 import OkayOthello.core.Field;
 import OkayOthello.core.Point;

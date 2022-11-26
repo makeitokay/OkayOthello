@@ -1,13 +1,14 @@
-package OkayOthello.players;
+package OkayOthello.player;
 
 import OkayOthello.core.Field;
 import OkayOthello.core.Point;
+import OkayOthello.io.GameIoHelper;
 
 import java.util.List;
 
-public class HardComputerPlayer implements Player {
+public class HumanPlayer implements Player {
     @Override
     public Point chooseMove(Field field, List<Point> availableMoves) {
-        return availableMoves.get(0);
+        return GameIoHelper.getMoveFromPlayer(field, availableMoves);
     }
 }
