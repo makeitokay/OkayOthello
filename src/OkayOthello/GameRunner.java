@@ -40,6 +40,7 @@ public class GameRunner {
         }
         var result = game.getGameResult();
         var winner = result.blackPlayerScore() > result.whitePlayerScore() ? "ЧЕРНЫЕ" : "БЕЛЫЕ";
+        // todo: to gameiohelper
         System.out.printf("ИГРА ЗАВЕРШЕНА!%nРЕЗУЛЬТАТЫ:%nБЕЛЫЕ набрали %s очков%nЧЕРНЫЕ набрали %s очков%nПОБЕДИЛИ %s%n%n",
                 result.whitePlayerScore(), result.blackPlayerScore(), winner);
 

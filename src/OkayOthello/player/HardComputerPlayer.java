@@ -14,16 +14,17 @@ public class HardComputerPlayer implements Player {
         var maxMoveWeight = -129.0;
         var maxMoveWeightIndex = -1;
         for (int i = 0; i < availableMoves.size(); ++i) {
+            var fieldCopy = field.getCopy();
             var move = availableMoves.get(i);
-            var computerMoveWeight = MoveCalculator.getMoveWeight(field, move, playerChip);
-            for (var closure : field.getClosures(move, playerChip)) {
-                field.closeClosure(closure);
+            var computerMoveWeight = MoveCalculator.getMoveWeight(fieldCopy, move, playerChip);
+            for (var closure : fieldCopy.getClosures(move, playerChip)) {
+                fieldCopy.closeClosure(closure);
             }
             var maxHumanMoveWeight = 0d;
-            for (int x = 0; x < field.getSize(); ++x) {
-                for (int y = 0; y < field.getSize(); ++y) {
+            for (int x = 0; x < fieldCopy.getSize(); ++x) {
+                for (int y = 0; y < fieldCopy.getSize(); ++y) {
                     var humanMove = new Point(x, y);
-                    var humanMoveWeight = MoveCalculator.getMoveWeight(field, humanMove, Utils.swapChip(playerChip));
+                    var humanMoveWeight = MoveCalculator.getMoveWeight(fieldCopy, humanMove, Utils.swapChip(playerChip));
                     if (humanMoveWeight > maxHumanMoveWeight) {
                         maxHumanMoveWeight = humanMoveWeight;
                     }
