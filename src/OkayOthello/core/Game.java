@@ -24,6 +24,10 @@ public class Game {
     }
 
     public void move(Point point) {
+        if (!canPlayerMove(currentChip)) {
+            throw new IllegalStateException("Current player can't move");
+        }
+
         fieldSnapshotRepository.add(new FieldSnapshot(getFieldCopy(), currentChip));
 
         field.setChipAt(point, currentChip);
