@@ -6,43 +6,56 @@ import OkayOthello.gameMode.EasyGameMode;
 import OkayOthello.gameMode.GameMode;
 import OkayOthello.gameMode.HardGameMode;
 import OkayOthello.gameMode.MultiplayerGameMode;
+import OkayOthello.io.GameIoHelper;
+import OkayOthello.player.MoveType;
+import OkayOthello.player.Player;
 
 public class GameRunner {
-    public static void RunEasyGame() {
-        Run(new Game(), new EasyGameMode());
+    public static void runEasyGame() {
+        run(new Game(), new EasyGameMode());
     }
 
-    public static void RunHardGame() {
-        Run(new Game(), new HardGameMode());
+    public static void runHardGame() {
+        run(new Game(), new HardGameMode());
     }
 
-    public static void RunMultiplayerGame() {
-        Run(new Game(), new MultiplayerGameMode());
+    public static void runMultiplayerGame() {
+        run(new Game(), new MultiplayerGameMode());
     }
 
-    private static void Run(Game game, GameMode mode) {
+    private static void run(Game game, GameMode mode) {
         var blackPlayer = mode.getBlackPlayer();
         var whitePlayer = mode.getWhitePlayer();
 
         while (!game.isCompleted()) {
             if (game.canBlackPlayerMove()) {
-                System.out.println("Ходят ЧЁРНЫЕ");
-                var blackPlayerMove = blackPlayer.chooseMove(game.getFieldCopy(), game.getAvailableMoves(), ChipType.Black);
-                System.out.printf("ЧЁРНЫЕ выбрали точку %s%n%n", blackPlayerMove);
-                game.move(blackPlayerMove);
+                processMove(game, blackPlayer, ChipType.Black);
             }
             if (game.canWhitePlayerMove()) {
-                System.out.println("Ходят БЕЛЫЕ");
-                var whitePlayerMove = whitePlayer.chooseMove(game.getFieldCopy(), game.getAvailableMoves(), ChipType.White);
-                System.out.printf("БЕЛЫЕ выбрали точку %s%n%n", whitePlayerMove);
-                game.move(whitePlayerMove);
+                processMove(game, whitePlayer, ChipType.White);
             }
         }
-        var result = game.getGameResult();
-        var winner = result.blackPlayerScore() > result.whitePlayerScore() ? "ЧЕРНЫЕ" : "БЕЛЫЕ";
-        // todo: to gameiohelper
-        System.out.printf("ИГРА ЗАВЕРШЕНА!%nРЕЗУЛЬТАТЫ:%nБЕЛЫЕ набрали %s очков%nЧЕРНЫЕ набрали %s очков%nПОБЕДИЛИ %s%n%n",
-                result.whitePlayerScore(), result.blackPlayerScore(), winner);
+        GameIoHelper.printGameResult(game.getGameResult());
+    }
 
+    private static void processMove(Game game, Player player, ChipType playerChip) {
+        var stringPlayer = playerChip == ChipType.White ? "БЕЛЫЕ" : "ЧЁРНЫЕ";
+        System.out.printf("Ходят %s%n", stringPlayer);
+        while (true) {
+            var playerMove = player.chooseMove(game.getFieldCopy(), game.getAvailableMoves(), playerChip);
+            if (playerMove.getType() == MoveType.MoveBack) {
+                if (!game.canCancelMove()) {
+                    System.out.println("Дружочек-пирожочек, отменить ход ты не имеешь возможности, извиняй.");
+                    continue;
+                }
+                game.cancelMove();
+                System.out.printf("%s ОТМЕНИЛИ СВОЙ ПРЕДЫДУЩИЙ ХОД%n", stringPlayer);
+            } else {
+                var movePoint = playerMove.getMove();
+                System.out.printf("%s выбрали точку %s%n%n", stringPlayer, movePoint);
+                game.move(movePoint);
+                break;
+            }
+        }
     }
 }

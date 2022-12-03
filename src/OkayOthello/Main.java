@@ -9,9 +9,9 @@ public class Main {
             var command = MainMenuIoHelper.getMainMenuCommand();
             System.out.printf("Вы выбрали %s%n", command.toString());
             switch (command) {
-                case PlayEasyMode -> GameRunner.RunEasyGame();
-                case PlayHardMode -> GameRunner.RunHardGame();
-                case PlayMultiplayer -> GameRunner.RunMultiplayerGame();
+                case PlayEasyMode -> GameRunner.runEasyGame();
+                case PlayHardMode -> GameRunner.runHardGame();
+                case PlayMultiplayer -> GameRunner.runMultiplayerGame();
                 case PrintBestResult -> {
 
                 }

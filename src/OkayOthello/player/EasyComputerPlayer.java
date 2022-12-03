@@ -8,7 +8,7 @@ import java.util.List;
 
 public class EasyComputerPlayer implements Player {
     @Override
-    public Point chooseMove(Field field, List<Point> availableMoves, ChipType playerChip) {
+    public ChosenMove chooseMove(Field field, List<Point> availableMoves, ChipType playerChip) {
         var maxMoveWeight = -129.0;
         var maxMoveWeightIndex = -1;
         for (int i = 0; i < availableMoves.size(); ++i) {
@@ -20,6 +20,6 @@ public class EasyComputerPlayer implements Player {
             }
         }
 
-        return availableMoves.get(maxMoveWeightIndex);
+        return ChosenMove.moveNext(availableMoves.get(maxMoveWeightIndex));
     }
 }

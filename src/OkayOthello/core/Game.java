@@ -1,11 +1,14 @@
 package OkayOthello.core;
 
+import OkayOthello.repository.FieldSnapshotRepository;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
-    private final Field field;
+    private Field field;
     private ChipType currentChip;
+    private final FieldSnapshotRepository fieldSnapshotRepository;
 
     public Game() {
         field = new Field(Constants.FIELD_SIZE);
@@ -16,9 +19,13 @@ public class Game {
         field.setChipAt(new Point(4, 4), ChipType.White);
 
         currentChip = ChipType.Black;
+
+        fieldSnapshotRepository = new FieldSnapshotRepository();
     }
 
     public void move(Point point) {
+        fieldSnapshotRepository.add(new FieldSnapshot(getFieldCopy(), currentChip));
+
         field.setChipAt(point, currentChip);
 
         var closures = field.getClosures(point, currentChip);
@@ -92,5 +99,16 @@ public class Game {
 
     public Field getFieldCopy() {
         return field.getCopy();
+    }
+
+    public boolean canCancelMove() {
+        return fieldSnapshotRepository.anyPlayerSnapshot(currentChip);
+    }
+
+    public void cancelMove() {
+        if (!canCancelMove()) {
+            throw new IllegalStateException();
+        }
+        field = fieldSnapshotRepository.popUntilPlayerLastMove(currentChip).field();
     }
 }

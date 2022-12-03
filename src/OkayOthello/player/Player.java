@@ -7,5 +7,5 @@ import OkayOthello.core.Point;
 import java.util.List;
 
 public interface Player {
-    Point chooseMove(Field field, List<Point> availableMoves, ChipType playerChip);
+    ChosenMove chooseMove(Field field, List<Point> availableMoves, ChipType playerChip);
 }

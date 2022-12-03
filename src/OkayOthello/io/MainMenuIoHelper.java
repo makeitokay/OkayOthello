@@ -16,7 +16,7 @@ public class MainMenuIoHelper {
 
     public static MainMenuCommand getMainMenuCommand() {
         System.out.print("Введите НОМЕР нужного пункта меню: ");
-        var commandIndex = IoHelper.GetNumberFromInput(1, 6) - 1;
+        var commandIndex = IoHelper.getNumberFromInput(1, 6) - 1;
         return MainMenuCommand.values()[commandIndex];
     }
 }

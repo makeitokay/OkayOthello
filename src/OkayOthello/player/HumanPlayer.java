@@ -9,7 +9,7 @@ import java.util.List;
 
 public class HumanPlayer implements Player {
     @Override
-    public Point chooseMove(Field field, List<Point> availableMoves, ChipType playerChip) {
+    public ChosenMove chooseMove(Field field, List<Point> availableMoves, ChipType playerChip) {
         return GameIoHelper.getMoveFromPlayer(field, availableMoves);
     }
 }

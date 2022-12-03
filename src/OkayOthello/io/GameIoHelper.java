@@ -1,19 +1,25 @@
 package OkayOthello.io;
 
 import OkayOthello.core.Field;
+import OkayOthello.core.GameResult;
 import OkayOthello.core.Point;
+import OkayOthello.player.ChosenMove;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class GameIoHelper {
     private static final List<String> COLUMNS = List.of("A", "B", "C", "D", "E", "F", "G", "H");
 
-    public static Point getMoveFromPlayer(Field field, List<Point> availableMoves) {
+    public static ChosenMove getMoveFromPlayer(Field field, List<Point> availableMoves) {
         printFieldWithAvailableMoves(field, availableMoves);
-        System.out.println("Выберите номер ячейки, в которую хотите сходить");
-        var pointIndex = IoHelper.GetNumberFromInput(1, availableMoves.size()) - 1;
-        return availableMoves.get(pointIndex);
+        System.out.println("Выберите номер ячейки, в которую хотите сходить (0, чтобы отменить СВОЙ ПРЕДЫДУЩИЙ ход)");
+        var cellNumber = IoHelper.getNumberFromInput(0, availableMoves.size());
+        if (cellNumber == 0) {
+            return ChosenMove.moveBack();
+        }
+        else {
+            return ChosenMove.moveNext(availableMoves.get(cellNumber - 1));
+        }
     }
 
     public static void printFieldWithAvailableMoves(Field field, List<Point> availableMoves) {
@@ -43,5 +49,11 @@ public class GameIoHelper {
             System.out.println("|");
         }
         System.out.println(" \t \t" + String.join("\t \t", COLUMNS));
+    }
+
+    public static void printGameResult(GameResult gameResult) {
+        var winner = gameResult.blackPlayerScore() > gameResult.whitePlayerScore() ? "ЧЕРНЫЕ" : "БЕЛЫЕ";
+        System.out.printf("ИГРА ЗАВЕРШЕНА!%nРЕЗУЛЬТАТЫ:%nБЕЛЫЕ набрали %s очков%nЧЕРНЫЕ набрали %s очков%nПОБЕДИЛИ %s%n%n",
+                gameResult.whitePlayerScore(), gameResult.blackPlayerScore(), winner);
     }
 }

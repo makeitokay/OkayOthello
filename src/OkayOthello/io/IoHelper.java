@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class IoHelper {
     private final static Scanner scanner = new Scanner(System.in);
 
-    public static int GetNumberFromInput(int minValue, int maxValue) {
+    public static int getNumberFromInput(int minValue, int maxValue) {
         while (true) {
             if (!scanner.hasNextInt()) {
                 System.out.println("Пожалуйста, вводите только ЧИСЛА");
