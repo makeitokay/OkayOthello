@@ -2,6 +2,7 @@ package OkayOthello;
 
 import OkayOthello.core.ChipType;
 import OkayOthello.core.Game;
+import OkayOthello.core.GameResult;
 import OkayOthello.gameMode.EasyGameMode;
 import OkayOthello.gameMode.GameMode;
 import OkayOthello.gameMode.HardGameMode;
@@ -9,21 +10,28 @@ import OkayOthello.gameMode.MultiplayerGameMode;
 import OkayOthello.io.GameIoHelper;
 import OkayOthello.player.MoveType;
 import OkayOthello.player.Player;
+import OkayOthello.repository.GameResultRepository;
 
 public class GameRunner {
-    public static void runEasyGame() {
+    private final GameResultRepository gameResultRepository;
+
+    public GameRunner() {
+        gameResultRepository = new GameResultRepository();
+    }
+
+    public void runEasyGame() {
         run(new Game(), new EasyGameMode());
     }
 
-    public static void runHardGame() {
+    public void runHardGame() {
         run(new Game(), new HardGameMode());
     }
 
-    public static void runMultiplayerGame() {
+    public void runMultiplayerGame() {
         run(new Game(), new MultiplayerGameMode());
     }
 
-    private static void run(Game game, GameMode mode) {
+    private void run(Game game, GameMode mode) {
         var blackPlayer = mode.getBlackPlayer();
         var whitePlayer = mode.getWhitePlayer();
 
@@ -35,10 +43,12 @@ public class GameRunner {
                 processMove(game, whitePlayer, ChipType.White);
             }
         }
-        GameIoHelper.printGameResult(game.getGameResult());
+        var result = game.getGameResult();
+        gameResultRepository.add(result);
+        GameIoHelper.printGameResult(result);
     }
 
-    private static void processMove(Game game, Player player, ChipType playerChip) {
+    private void processMove(Game game, Player player, ChipType playerChip) {
         var stringPlayer = playerChip == ChipType.White ? "БЕЛЫЕ" : "ЧЁРНЫЕ";
         System.out.printf("Ходят %s%n", stringPlayer);
         while (true) {
@@ -57,5 +67,16 @@ public class GameRunner {
                 break;
             }
         }
+    }
+
+    public void printBestGameResults() {
+        var blackPlayerBestResult = gameResultRepository.getBestBlackPlayerResult();
+        var whitePlayerBestResult = gameResultRepository.getBestWhitePlayerResult();
+        if (blackPlayerBestResult == null || whitePlayerBestResult == null) {
+            System.out.println("Сначала поиграй, потом результаты проси!");
+            return;
+        }
+        GameIoHelper.printBestPlayerScore(blackPlayerBestResult.blackPlayerScore(), ChipType.Black);
+        GameIoHelper.printBestPlayerScore(whitePlayerBestResult.whitePlayerScore(), ChipType.White);
     }
 }

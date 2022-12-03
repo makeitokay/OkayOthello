@@ -1,9 +1,8 @@
 package OkayOthello.io;
 
-import OkayOthello.core.Field;
-import OkayOthello.core.GameResult;
-import OkayOthello.core.Point;
+import OkayOthello.core.*;
 import OkayOthello.player.ChosenMove;
+import OkayOthello.repository.GameResultRepository;
 
 import java.util.List;
 
@@ -55,5 +54,10 @@ public class GameIoHelper {
         var winner = gameResult.blackPlayerScore() > gameResult.whitePlayerScore() ? "ЧЕРНЫЕ" : "БЕЛЫЕ";
         System.out.printf("ИГРА ЗАВЕРШЕНА!%nРЕЗУЛЬТАТЫ:%nБЕЛЫЕ набрали %s очков%nЧЕРНЫЕ набрали %s очков%nПОБЕДИЛИ %s%n%n",
                 gameResult.whitePlayerScore(), gameResult.blackPlayerScore(), winner);
+    }
+
+    public static void printBestPlayerScore(int score, ChipType playerChip) {
+        var stringPlayer = playerChip == ChipType.White ? "БЕЛЫХ" : "ЧЁРНЫХ";
+        System.out.printf("ЛУЧШИЙ РЕЗУЛЬТАТ %s : %s ОЧКОВ%n", stringPlayer, score);
     }
 }
