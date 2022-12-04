@@ -43,7 +43,7 @@ public class Field {
             int opponentChipsCount = 0;
             int totalChipsCount = 0;
             var opponent = Utils.swapChip(chip);
-            while (x > 0 && x < getSize() && y > 0 && y < getSize()) {
+            while (x >= 0 && x < getSize() && y >= 0 && y < getSize()) {
                 if (field[x][y] == chip) {
                     if (totalChipsCount == opponentChipsCount && totalChipsCount != 0) {
                         closures.add(new Closure(point, direction, totalChipsCount));
