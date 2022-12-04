@@ -12,6 +12,8 @@ import OkayOthello.player.MoveType;
 import OkayOthello.player.Player;
 import OkayOthello.repository.GameResultRepository;
 
+import java.util.ArrayList;
+
 public class GameRunner {
     private final GameResultRepository gameResultRepository;
 
@@ -43,6 +45,7 @@ public class GameRunner {
                 processMove(game, whitePlayer, ChipType.White);
             }
         }
+        GameIoHelper.printFieldWithAvailableMoves(game.getFieldCopy(), new ArrayList<>());
         var result = game.getGameResult();
         gameResultRepository.add(result);
         GameIoHelper.printGameResult(result);
